@@ -4,6 +4,16 @@ import re
 from docx import Document
 import nltk
 import os
+import subprocess
+import sys
+
+# Install spaCy model if not available
+try:
+    import spacy
+    spacy.load("en_core_web_sm")
+except (ImportError, OSError):
+    print("Downloading spaCy model...")
+    subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
 
 # Download NLTK data with error handling
 try:
