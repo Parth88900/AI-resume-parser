@@ -6,7 +6,7 @@ from resume_parser import ResumeParser
 import tempfile
 import os
 import base64
-
+parser = ResumeParser()
 # Page configuration
 st.set_page_config(
     page_title="AI Resume Parser",
