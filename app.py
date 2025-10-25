@@ -80,14 +80,17 @@ def main():
             tmp_file_path = tmp_file.name
         
         # Initialize parser
-        parser = ResumeParser()
-        
-        # Parse resume
+                # Parse resume
         with st.spinner('🔍 Analyzing resume... This may take a few seconds.'):
             result = parser.parse_resume(tmp_file_path)
         
         # Clean up temporary file
         os.unlink(tmp_file_path)
+        
+        if not result.get('success', False):
+            st.error(f"❌ {result.get('error', 'Unknown error occurred')}")
+            st.info("💡 **Tips for better results:**\n- Use text-based PDFs (not scanned images)\n- Ensure the resume has sufficient text content\n- Try a different file format (DOCX often works better)")
+            return
         
         if not result.get('success', False):
             st.error(f"❌ {result.get('error', 'Unknown error occurred')}")
